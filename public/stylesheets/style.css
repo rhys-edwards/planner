@@ -1,0 +1,47 @@
+html {
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background: rgba(245,191,54,1);
+  background: -moz-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
+  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(245,191,54,1)), color-stop(100%, rgba(237,84,71,1)));
+  background: -webkit-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
+  background: -o-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
+  background: -ms-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
+  background: linear-gradient(135deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5bf36', endColorstr='#ed5447', GradientType=1 );
+  position: fixed;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #FFFFFF
+}
+
+a {
+  color: #00B7FF;
+}
+
+label {
+    position:relative;
+    cursor:pointer;
+}
+label [type="checkbox"] {
+    display:none;
+}
+[type="checkbox"] + span {
+    display:inline-block;
+    padding:1em;
+    width: 6em;
+    text-align: center;
+    border: solid 1px rgba(255,255,255, 0.8);
+}
+:checked + span {
+    background:rgba(255,255,255, 0.4);
+    display:inline-block;
+}
+[type="checkbox"][disabled] + span {
+    background:#f00;
+}

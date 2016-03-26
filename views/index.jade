@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  .container
+    h1 London Plans
+    form(method='post' action='post', class='plans', id='plans')
+      .form-group
+        label Do you have a link?
+        input.form-control(name='search', id='search' type='url', required='required')
+        h2#title
+      .form-group
+        label What looks cool?
+        input.form-control(name='title', type='text', required='required' class='title')
+      .form-group
+        label When is it?
+        label
+          input(type='checkbox' name='week' value='week')
+          span This week
+        label
+          input(type='checkbox' name='month' value='month')
+          span This Month
+        label
+          input(type='checkbox' name='date' value='date')
+          span Date
+      input.btn.btn-default(name='submit', type='submit', onsubmit="this.submit(); this.reset(); return false;")
+      ul#post
+  

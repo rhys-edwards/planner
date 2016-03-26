@@ -1,0 +1,30 @@
+// IMPORT MONGOOSE AND CONNECT TO DB
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/entries');
+
+// ESTABLISH THE DB AS A MONGOOSE CONNECTION
+var db = mongoose.connection;
+
+// DEFINE THE SCHEMA
+var EntrySchema = mongoose.Schema ({
+  url: {
+    type: String,
+    index: true
+  },
+  title: {
+    type: String,
+    index: true
+  },
+  selectedDate: {
+    type: String,
+    index: true
+  }
+});
+
+// MAKE THE ENTRY MODULE ACCESSIBLE TO THE APP
+var Entry = module.exports = mongoose.model('Entry', EntrySchema);
+
+// EXPORT createEntry TO THE APP TO SAVE THE DATA TO THE DB
+module.exports.createEntry = function(data, callback) {
+  data.save(callback)
+};

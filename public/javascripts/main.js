@@ -24,3 +24,17 @@ $(function(){
 $('input[type="checkbox"]').on('change', function() {
     $('input[type="' + this.type  + '"]').not(this).prop('checked', false);
 });
+
+// LOAD THE DATE PICKER
+$(function () {
+  $('.datepicker').datepicker();
+});
+
+// ONLY DISPLAY THE DATE PICKER IF THE 'DATE' CHECKBOX IS SELECTED
+$('#date').on('change', function() {
+  if(this.checked) {
+    $('.datepicker').show();
+  } else {
+    $('.datepicker').hide();
+  }
+});

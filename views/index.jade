@@ -20,8 +20,13 @@ block content
           input(type='checkbox' name='month' value='month')
           span This Month
         label
-          input(type='checkbox' name='date' value='date')
+          input(type='checkbox' id='date')
           span Date
+        label
+          input(type='textbox' class='datepicker' name='date' value='')
       input.btn.btn-default(name='submit', type='submit', onsubmit="this.submit(); this.reset(); return false;")
-      ul#post
-  
+      
+    each Entry, i in entries
+      div.title
+      div.url
+      div.selectedDate

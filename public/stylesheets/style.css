@@ -45,3 +45,6 @@ label [type="checkbox"] {
 [type="checkbox"][disabled] + span {
     background:#f00;
 }
+.datepicker {
+  display: none;
+}

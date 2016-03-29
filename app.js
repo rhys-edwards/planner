@@ -1,5 +1,5 @@
-var express = require('express');
-var path = require('path');
+var express = require('express')
+var path = require('path')
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -47,7 +47,7 @@ app.get('/searching', function(req, res){
    }
  };
 
- scrape(options, function(error, metadata){
+ scrape(options, function(error, metadata) {
    console.log(metadata);
    if (typeof metadata.general.title != 'undefined') {
      var title = metadata.general.title;

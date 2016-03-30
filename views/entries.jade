@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  .container
+    each Entry, i in entries
+      div.title= Entry.title
+      div.url= Entry.url
+      div.selectedDate= Entry.selectedDate

@@ -34,15 +34,14 @@ router.post('/post', function(req, res, next) {
     var selectedDate = date;
   };
 
+// IM UP TO HERE LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK
   if (selectedDate == 'week') {
     var date = new Date;
-    console.log('1' + ' ' + date);
     date.setDate(date.getDate() + 7);
-    console.log('2' + ' ' + date);
     var selectedDate = date.toString();
-  };
-
-  console.log('hello' + ' ' + selectedDate);
+  } else if (selectedDate == 'month') {
+    date.setDate(Date.getDate() + )
+  }
 
   //CREATE NEW OBJECT
   var data = new Entry ({

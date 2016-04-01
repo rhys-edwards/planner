@@ -22,12 +22,18 @@ router.post('/post', function(req, res, next) {
   var anytime = req.body.anytime;
   var date = req.body.date;
 
+  var dateObj = new Date(date);
+  var isoDate = dateObj.toISOString()
+  console.log(isoDate + ' ' + 'step 1')
   //FIND WHICH DATE WAS SELECTED BY USER AND ASSIGN THAT TO selectedDate
   if (typeof anytime != 'undefined' ){
     var selectedDate = 'anytime';
   } else {
-    var selectedDate = date;
+    var selectedDate = isoDate;
+    console.log(selectedDate + ' ' + 'step 2')
   };
+
+  console.log(selectedDate + ' ' + 'step 3')
 
   //CREATE NEW OBJECT
   var data = new Entry ({
@@ -51,27 +57,33 @@ router.post('/post', function(req, res, next) {
   return false;
 });
 
-//DATE STUFF
-var date = new Date;
-date.setDate(date.getDate() + 7);
-console.log(date.toString());
-
 // THIS WEEKEND
-function thisWeekend(data) {
-  var today = data.getDay();
-  if (today == 6 || today == 0) {
-    console.log('WEEKEND BITCHES');
-  } else {
-    console.log('Not the weekend');
-  }
-};
+Entry.aggregate(
+    [
+        { "$redact": {
+            "$cond": {
+                "if": {
+                    "$or": [
+                        { "$eq": [ { "$dayOfWeek": "$selectedDate" }, 1 ] },
+                        { "$eq": [ { "$dayOfWeek": "$selectedDate" }, 7 ] }
+                    ]
+                },
+                "then": "$$KEEP",
+                "else": "$$PRUNE"
+            }
+        }}
+    ],
+    function(err,results) {
+      if (err) throw err;
+      console.log(results);
 
-Entry.
-  find({}).
-  where('selectedDate').equals(thisWeekend(data)).
-  exec(function(err, entries) {
-  console.log('Events on a weeked' + ' ' + entries);
+      function matchWeekend(fruit) {
+          return fruit.selectedDate == 'Sun Apr 10 2016 00:00:00 GMT+0100 (BST)';
+      }
 
-});
+      console.log(results.find(matchWeekend))
+    }
+)
+ // { name: 'cherries', quantity: 5 }
 
 module.exports = router;

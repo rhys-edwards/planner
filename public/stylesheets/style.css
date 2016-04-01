@@ -152,7 +152,7 @@ textarea:focus, input:focus{
   color: #FFF;
   border-radius: 0;
 }
-.scroll {
+/*.scroll {
   overflow: scroll;
   height: 730px;
-}
+}*/

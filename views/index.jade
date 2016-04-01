@@ -10,13 +10,19 @@ block content
   .container
   .row
     .col-md-6
-      h2 What's coming up
+      h2 On This Weekend
       .scroll
-        each Entry, i in entries
-          //#[a(target="_blank", href="https://github.com/jadejs/jade/blob/master/docs/views/reference/interpolation.jade") on GitHub]
+        each result, i in theWeekend
           div.title
-            #[a(target="_blank" href="#{Entry.url}") #{Entry.title}]
-            p WHEN: #{Entry.selectedDate}
+            #[a(target="_blank" href="#{theWeekend.url}") #{theWeekend.title}]
+            p WHEN: #{theWeekend.selectedDate}
+      //- h2 What's coming up
+      //- .scroll
+      //-   each Entry, i in entries
+      //-     //#[a(target="_blank", href="https://github.com/jadejs/jade/blob/master/docs/views/reference/interpolation.jade") on GitHub]
+      //-     div.title
+      //-       #[a(target="_blank" href="#{Entry.url}") #{Entry.title}]
+      //-       p WHEN: #{Entry.selectedDate}
     .col-md-6
       h2 What have you found?
       form(method='post' action='post', class='plans', id='plans')

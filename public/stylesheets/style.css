@@ -1,32 +1,60 @@
 html {
   top: 0;
   left: 0;
+  margin: 0;
+  padding: 0;
   min-width: 100%;
   min-height: 100%;
-  background: rgba(245,191,54,1);
-  background: -moz-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
-  background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(245,191,54,1)), color-stop(100%, rgba(237,84,71,1)));
-  background: -webkit-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
-  background: -o-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
-  background: -ms-linear-gradient(-45deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
-  background: linear-gradient(135deg, rgba(245,191,54,1) 0%, rgba(237,84,71,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5bf36', endColorstr='#ed5447', GradientType=1 );
-  position: fixed;
 }
 
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden ! important;
+  overflow-x: hidden ! important;
+  background: url('/images/dsc_0693.jpg');
+  background-size: cover;
+  /*background-size: contain;*/
+  background-repeat: no-repeat;
+  background-position: right;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: #FFFFFF
 }
 
+body:before {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    /*background: -webkit-radial-gradient(top center, ellipse cover, rgba(255,255,255,0.2) 0%,rgba(0,0,0,0.5) 100%);*/
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f9346c+0,9693ea+100 */
+    background: rgb(249,52,108); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(249,52,108,1) 0%, rgba(150,147,234,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(249,52,108,1) 0%,rgba(150,147,234,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(249,52,108,1) 0%,rgba(150,147,234,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9346c', endColorstr='#9693ea',GradientType=0 ); /* IE6-9 */    opacity: 0.6;
+}
+
 a {
-  color: #00B7FF;
+  color: #A9A9A9;
+}
+
+p, a {
+    margin: 0 0 0 10px;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
 }
 
 label {
     position:relative;
     cursor:pointer;
+    margin-top: 10px;
 }
 label [type="checkbox"] {
     display:none;
@@ -47,4 +75,84 @@ label [type="checkbox"] {
 }
 .datepicker {
   display: none;
+}
+
+input[type="text"], input[type='url']
+{
+    background: transparent;
+    display: block;
+    float: left;
+    width: 100%;
+    height: 34px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border: none;
+    border-bottom: solid 1px #FFF;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width:100%;
+  display: block;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.05;
+}
+
+.wrapper {
+  position: relative;
+  max-width: 1080px;
+  height: 100%;
+  width: 94%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.container {
+  position:fixed;
+  color: #FFFFFF;
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  max-width: 1080px;
+  margin-top: 80px;
+  width: 94%;
+  margin: 80px auto;
+}
+
+.title {
+    padding: 10px 0 10px 0;
+    border-bottom: solid 3px rgba(125,107,150,0.2);
+    background-color: ghostwhite;
+    margin-bottom: 10px;
+    color: #A9A9A9;
+    border-radius: 2px 2px 5px 5px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+*:focus {
+    outline: none;
+}
+.url {
+  color: #FFF;
+  border-radius: 0;
+}
+.scroll {
+  overflow: scroll;
+  height: 730px;
 }

@@ -9,7 +9,7 @@ var mongoose = require('mongoose');
 // });
 
 router.get('/', function(req, res, next){
-  Entry.find({}, function (err, entries) {
+  Entry.find({}).sort('-date').exec(function(err, entries) {
     res.render('index', {
       "entries": entries
     });
@@ -19,29 +19,15 @@ router.get('/', function(req, res, next){
 router.post('/post', function(req, res, next) {
   var url = req.body.search;
   var title = req.body.title;
-  var week = req.body.week;
-  var month = req.body.month;
+  var anytime = req.body.anytime;
   var date = req.body.date;
 
-  console.log(url + ' ' + title + ' ' + week + ' ' + month + ' ' + date);
-
   //FIND WHICH DATE WAS SELECTED BY USER AND ASSIGN THAT TO selectedDate
-  if (typeof week != 'undefined' ){
-    var selectedDate = 'week';
-  } else if (typeof month != 'undefined') {
-    var selectedDate = 'month';
+  if (typeof anytime != 'undefined' ){
+    var selectedDate = 'anytime';
   } else {
     var selectedDate = date;
   };
-
-// IM UP TO HERE LOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOK
-  if (selectedDate == 'week') {
-    var date = new Date;
-    date.setDate(date.getDate() + 7);
-    var selectedDate = date.toString();
-  } else if (selectedDate == 'month') {
-    date.setDate(Date.getDate() + )
-  }
 
   //CREATE NEW OBJECT
   var data = new Entry ({
@@ -57,7 +43,7 @@ router.post('/post', function(req, res, next) {
   })
 
   //RENDER THE HOMEPAGE TO CLEAR THE FORM
-  Entry.find({}, function (err, entries) {
+  Entry.find({}).sort('-date').exec(function(err, entries) {
     res.render('index', {
       "entries": entries
     });
@@ -70,11 +56,22 @@ var date = new Date;
 date.setDate(date.getDate() + 7);
 console.log(date.toString());
 
-// var date = new Date();
-// date.setDate(date.getDate() + 7);
-//
-// var dateMsg = date.getDate()+'/'+ (date.getMonth()+1) +'/'+date.getFullYear();
-// alert(dateMsg);
+// THIS WEEKEND
+function thisWeekend(data) {
+  var today = data.getDay();
+  if (today == 6 || today == 0) {
+    console.log('WEEKEND BITCHES');
+  } else {
+    console.log('Not the weekend');
+  }
+};
 
+Entry.
+  find({}).
+  where('selectedDate').equals(thisWeekend(data)).
+  exec(function(err, entries) {
+  console.log('Events on a weeked' + ' ' + entries);
+
+});
 
 module.exports = router;

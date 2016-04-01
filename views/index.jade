@@ -1,32 +1,41 @@
 extends layout
 
 block content
+  header
+    .overlay
+    .wrapper
+      h1 London Plans
+  .clearfix
+  
   .container
-    h1 London Plans
-    form(method='post' action='post', class='plans', id='plans')
-      .form-group
-        label Do you have a link?
-        input.form-control(name='search', id='search' type='url', required='required')
-        h2#title
-      .form-group
-        label What looks cool?
-        input.form-control(name='title', type='text', required='required' class='title')
-      .form-group
-        label When is it?
-        label
-          input(type='checkbox' name='week' value='week')
-          span This week
-        label
-          input(type='checkbox' name='month' value='month')
-          span This Month
-        label
-          input(type='checkbox' id='date')
-          span Date
-        label
-          input(type='textbox' class='datepicker' name='date' value='')
-        label
-          input.btn.btn-default(name='submit', type='submit')
-      each Entry, i in entries
-        div.title= Entry.title
-        div.url= Entry.url
-        div.selectedDate= Entry.selectedDate
+  .row
+    .col-md-6
+      h2 What's coming up
+      .scroll
+        each Entry, i in entries
+          //#[a(target="_blank", href="https://github.com/jadejs/jade/blob/master/docs/views/reference/interpolation.jade") on GitHub]
+          div.title
+            #[a(target="_blank" href="#{Entry.url}") #{Entry.title}]
+            p WHEN: #{Entry.selectedDate}
+    .col-md-6
+      h2 What have you found?
+      form(method='post' action='post', class='plans', id='plans')
+        .form-group
+          label Do you have a link?
+          input(name='search', id='search' type='url', required='required')
+          h2#title
+        .form-group
+          label What looks cool?
+          input(name='title', type='text', required='required' class='title url')
+        .form-group
+          label When is it?
+          label
+            input(type='checkbox' name='anytime' value='anytime')
+            span Anytime
+          label
+            input(type='checkbox' id='date')
+            span Date
+          label
+            input(type='textbox' class='datepicker' name='date' value='')
+          label
+            input.btn.btn-default(name='submit', type='submit')

@@ -59,6 +59,17 @@ app.get('/searching', function(req, res){
  });
 });
 
+app.get('/dblisting', function(req,res){
+  console.log('hello')
+   Entry.find({ selectedDate: 'value'}, function(err, entries) {
+      if (err) {
+         res.send(err.message);
+      } else {
+        console.log(entries);
+      }
+    });
+  });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

@@ -14,8 +14,8 @@ block content
       .scroll
         each result, i in theWeekend
           div.title
-            #[a(target="_blank" href="#{theWeekend.url}") #{theWeekend.title}]
-            p WHEN: #{theWeekend.selectedDate}
+            #[a(target="_blank" href="#{result.url}") #{result.title}]
+            p WHEN: #{result.selectedDate}
       //- h2 What's coming up
       //- .scroll
       //-   each Entry, i in entries

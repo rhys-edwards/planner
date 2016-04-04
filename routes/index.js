@@ -12,7 +12,7 @@ var moment = require('moment-timezone');
 router.get('/', function(req, res, next){
   weekendPlans(function(err, theWeekend) {
       if (err) throw err
-      console.log(theWeekend);
+      //console.log(theWeekend);
       res.render('index', {"theWeekend" : theWeekend});
   })
   // Entry.find({}).sort('-date').exec(function(err, entries) {
@@ -58,13 +58,7 @@ router.post('/post', function(req, res, next) {
     console.log(entry);
   })
 
-  //RENDER THE HOMEPAGE TO CLEAR THE FORM
-  weekendPlans(function(err, theWeekend) {
-      if (err) throw err
-      console.log(theWeekend);
-      res.render('index', {"theWeekend" : theWeekend});
-  });
-  return false;
+  res.redirect('back');
 });
 
 // DETERMINE THE DATES FOR THIS WEEKEND
@@ -107,15 +101,22 @@ function weekendPlans(callback) {
       // GET THE RESULTS AND RETURN IF selectedDate MATCHES THIS WEEKEND
       function(err,results) {
         var i = results.length;
-        var theWeekend;
+        var theWeekend = [];
+        //console.log(results)
 
-        while(i--) {
-          if(results[i].selectedDate === friday || saturday || sunday) {
-              theWeekend = results[i];
-              break;
-          }
-        }
+        var days = [friday, saturday, sunday];
+        var theWeekend = results.filter(function(obj) {
+            for (var i = 0; i < days.length; i++) {
+                var day = days[i];
+                // now properly compare the day of week
+                if (day.getDate() == obj.selectedDate.getDate()) {
+                    return true;
+                }
+            }
+            return false;
+        });
         callback(err, theWeekend)
+        console.log(theWeekend);
       }
 )};
 
